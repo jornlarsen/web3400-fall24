@@ -25,10 +25,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         // Update the last_login date/time stamp
         $updateStmt = $pdo->prepare("UPDATE `users` SET `last_login` = NOW() WHERE `id` = ?");
-        $updateResults = $updateStmt->execute([$user['id']])
+        $updateResults = $updateStmt->execute([$user['id']]);
 
+        //set session vars for the user session
+        $_SESSION['loggedin'] = true;
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['user_role'] = $user['role'];
+        $_SESSION['messages'][] = "Welcome back, $full_name";
+
+        //redirect the user to the profile or admin dashboard based on their role
+        if ($user['role'] == 'admin') {
+            header('Location: admin_dashboard.php');
+        } else {
+            header('Location: profile.php');
+        }
+        exit;
+    } elseif ($user && !$accountActivated) {
+        // Generate activation link. This is instead of sending a verification Email and or SMS message
+        $activation_link = "register.php?code=$activation_code";
+
+        // Create an activation link message
+        $_SESSION['messages'][] = "Welcome $full_name. Your account has not been activated. To activate your account, <a href='$activation_link'>click here</a>.";
     } else {
-
+        // User account does not exist, or the password is invalid
+        $_SESSION['messages'][] = "Invalid email or password. Please try again.";
+        header('Location: login.php');
+        exit;
     }
 
 
