@@ -11,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sms = $_POST['sms'] == 'on' ? 1 : 0;
     $subscribe = $_POST['subscribe'] == 'on' ? 1 : 0;
     $activation_code = uniqid(); // Generate a unique id
+    $user_bio = htmlspecialchars($_POST['user_bio']); // Extract and sanitize user bio
 
     // Check if the email is unique
     $stmt = $pdo->prepare("SELECT * FROM `users` WHERE `email` = ?");
@@ -24,8 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     } else {
         // Email is unique, proceed with inserting the new user record
-        $insertStmt = $pdo->prepare("INSERT INTO `users`(`full_name`, `email`, `pass_hash`, `phone`, `sms`, `subscribe`, `activation_code`) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $insertStmt->execute([$full_name, $email, $password, $phone, $sms, $subscribe, $activation_code]);
+        $insertStmt = $pdo->prepare("INSERT INTO `users`(`full_name`, `email`, `pass_hash`, `phone`, `sms`, `subscribe`, `activation_code`, `user_bio) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $insertStmt->execute([$full_name, $email, $password, $phone, $sms, $subscribe, $activation_code, $user_bio]);
 
         // Generate activation link. This is instead of sending a verification Email and or SMS message
         $activation_link = "?code=$activation_code";
@@ -82,6 +83,13 @@ if (isset($_GET['code'])) {
             <label class="label">Full Name</label>
             <div class="control">
                 <input class="input" type="text" name="full_name" required>
+            </div>
+        </div>
+        <!-- Bio -->
+        <div class="field">
+            <label class="label">Bio</label>
+            <div class="control">
+                <textarea class="textarea" name="user_bio" placeholder="Tell us about yourself"></textarea>
             </div>
         </div>
         <!-- Email -->
