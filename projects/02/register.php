@@ -85,13 +85,6 @@ if (isset($_GET['code'])) {
                 <input class="input" type="text" name="full_name" required>
             </div>
         </div>
-        <!-- Bio -->
-        <div class="field">
-            <label class="label">Bio</label>
-            <div class="control">
-                <textarea class="textarea" name="user_bio" placeholder="Tell us about yourself"></textarea>
-            </div>
-        </div>
         <!-- Email -->
         <div class="field">
             <label class="label">Email</label>
@@ -111,6 +104,13 @@ if (isset($_GET['code'])) {
             <label class="label">Phone</label>
             <div class="control">
                 <input class="input" type="tel" name="phone">
+            </div>
+        </div>
+        <!-- Bio -->
+        <div class="field">
+            <label class="label">Bio</label>
+            <div class="control">
+                <textarea class="textarea" name="user_bio" placeholder="Tell us about yourself"></textarea>
             </div>
         </div>
         <!-- sms -->
