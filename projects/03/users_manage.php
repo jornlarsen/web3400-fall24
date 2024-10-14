@@ -3,19 +3,26 @@
 include 'config.php'; 
 
 // Step 2: Secure and only allow 'admin' users to access this page
+if (!isset($_SESSION['loggedin']) || $_SESSION['user_role'] !== 'admin') {
+    // Redirect user to login page or display an error message
+    $_SESSION['messages'][] = "You must be an administrator to access that resource.";
+    header('Location: login.php');
+    exit;
+}
 
 // Step 3: Prepare the SQL query template to select all users from the database
-// ex. $stmt = $pdo->prepare('SQL GOES HERE...');
+$stmt = $pdo->prepare("SELECT * FROM `users` WHERE 1");
 
 // Step 4: Execute the query
-// ex. $stmt->execute();
+$stmt->execute();
 
 // Step 5: Fetch and store the results in the $users associative array
-// ex. profile.php line 26
-// ex. $users = $stmt->fetchAll(PDO::FETCH_ASSOC); (<----- USE THIS!!!!) 
+$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Step 6: Check if the query returned any rows. If not, display the message: "There are no user records in the database."
-// ex. if (!$users) {...} (REGISTER.PHP line 23)
+if (!$users) {
+    $_SESSION['messages'][] = "There are no user records in the database.";
+}
 ?>
 <?php include 'templates/head.php'; ?>
 <?php include 'templates/nav.php'; ?>
