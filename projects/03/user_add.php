@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Encrypt password
     $phone = htmlspecialchars($_POST['phone']);
-    $role = htmlspecialchars($POST['role']);
+    $role = htmlspecialchars($_POST['role']);
 
     // Check if the email is unique
     $stmt = $pdo->prepare("SELECT * FROM `users` WHERE `email` = ?");
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Create successful user creation message
         $_SESSION['messages'][] = "The user account for $full_name was created. They will need to login to activate their account.";
-        header('Location: user_manage.php');
+        header('Location: users_manage.php');
         exit;
     }
 }

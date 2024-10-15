@@ -17,11 +17,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Extract, sanitize user input, and assign data to variables
     $full_name = htmlspecialchars($_POST['full_name']);
     $phone = htmlspecialchars($_POST['phone']);
-    $role = htmlspecialchars($POST['role']);
+    $role = htmlspecialchars($_POST['role']);
 
     // Update user records
-    $insertStmt = $pdo->prepare("UPDATE `users` SET `full_name`=?,`phone`=?, `role`=? WHERE 1");
-    $insertStmt->execute([$full_name, $phone, $role]);
+    $insertStmt = $pdo->prepare("UPDATE `users` SET `full_name`=?,`phone`=?, `role`=? WHERE `id` = ?");
+    $insertStmt->execute([$full_name, $phone, $role, $_POST['id']]);
 }
 
 // Step 4: Else it's an initial page request, fetch the user's current data from the database by preparing and executing a SQL statement that gets the user id from the query string (ex. $_GET['id'])

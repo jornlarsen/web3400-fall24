@@ -8,8 +8,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Encrypt password
     $phone = htmlspecialchars($_POST['phone']);
-    $sms = $_POST['sms'] == 'on' ? 1 : 0;
-    $subscribe = $_POST['subscribe'] == 'on' ? 1 : 0;
+    // OLD CODE
+    // $sms = $_POST['sms'] == 'on' ? 1 : 0;
+    // $subscribe = $_POST['subscribe'] == 'on' ? 1 : 0;
+    $sms = $_POST['sms'] ?? 0;
+    $subscribe = $_POST['subscribe'] ?? 0;
     $activation_code = uniqid(); // Generate a unique id
     $user_bio = htmlspecialchars($_POST['user_bio']); // Extract and sanitize user bio
 
@@ -20,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($userExists) {
         // Email already exists, prompt the user to choose another
-        $_SESSION['messages'][] = "That email already exists. Please choose another or reset your passowrd";
+        $_SESSION['messages'][] = "That email already exists. Please choose another or reset your password";
         header('Location: register.php');
         exit;
     } else {
