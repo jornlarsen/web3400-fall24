@@ -12,7 +12,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['user_role'] !== 'admin') {
 
 // Step 3: Prepare the SQL query template to select all posts from the database
 // ex. $stmt = $pdo->prepare('SELECT articles.*, users.full_name AS author FROM articles JOIN users ON articles.author_id = users.id ORDER BY `created_at` DESC');
-$stmt = $pdo->prepare('SELECT `articles`.*, `users.full_name` AS `author` FROM `articles` JOIN `users` ON `articles`.`author_id` = `users`.`id` ORDER BY `created_at` DESC');
+$stmt = $pdo->prepare('SELECT `articles`.*, `users`.`full_name` AS `author` FROM `articles` JOIN `users` ON `articles`.`author_id` = `users`.`id` ORDER BY `created_at` DESC');
 
 // Step 4: Execute the query
 // ex. $stmt->execute();
@@ -29,6 +29,7 @@ if (!$articles) {
 }
 
 // Step 7: If the 'is_published' control is clicked, toggle the status from 0 -> 1 for published or 1 -> 0 for unpublished
+
 
 // Step 8: If the 'is_featured' control is clicked, toggle the status from 0 -> 1 for featured or 1 -> 0 for unfeatured
 

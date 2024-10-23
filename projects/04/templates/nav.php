@@ -35,6 +35,9 @@
                         <a href="users_manage.php" class="navbar-item">
                             Manage Users
                         </a>
+                        <a href="articles.php" class="navbar-item">
+                            Manage Articles
+                        </a>
                     </div>
                 </div>
             <?php endif; ?>
@@ -72,15 +75,21 @@
 <section class="block">&nbsp;<!--only for spacing purposes--></section>
 <?php if ($_SERVER['PHP_SELF'] == '/index.php') : ?>
   <!-- BEGIN HERO -->
-  <section class="hero is-link">
-      <div class="hero-body">
-          <p class="title">
-              Hero title
-          </p>
-          <p class="subtitle">
-              Hero subtitle
-          </p>
-      </div>
+  <section class="hero is-info">
+    <div class="hero-body">
+      <p class="title">
+        Getting tired of boring, old grass?
+      </p>
+      <p class="subtitle">
+        Your catchy subtitle goes here...
+      </p>
+      <a href="contact.php" class="button is-medium is-info is-light is-rounded">
+        <span class="icon is-large">
+          <i class="fab fa-2x fa-pagelines"></i>
+        </span>
+        <span>Ask us how you can help!</span>
+      </a>
+    </div>
   </section>
   <!-- END HERO -->
 <?php endif; ?>
