@@ -78,16 +78,16 @@
   <section class="hero is-info">
     <div class="hero-body">
       <p class="title">
-        Getting tired of boring, old grass?
+        Getting tired of your boring, thirsty lawn?
       </p>
       <p class="subtitle">
-        Your catchy subtitle goes here...
+        Save both your curb appeal and the planet.
       </p>
       <a href="contact.php" class="button is-medium is-info is-light is-rounded">
         <span class="icon is-large">
           <i class="fab fa-2x fa-pagelines"></i>
         </span>
-        <span>Ask us how you can help!</span>
+        <span>Ask us how you can get started!</span>
       </a>
     </div>
   </section>

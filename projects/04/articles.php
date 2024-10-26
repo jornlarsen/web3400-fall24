@@ -29,9 +29,30 @@ if (!$articles) {
 }
 
 // Step 7: If the 'is_published' control is clicked, toggle the status from 0 -> 1 for published or 1 -> 0 for unpublished
+if (isset($_GET['id'])) {
+    $id = (int) $_GET['id'];
+
+    if (isset($_GET['is_published'])) {
+        $current_status = (int) $_GET['is_published'];
+        $new_status = $current_status === 1 ? 0 : 1;
+
+        $stmt = $pdo->prepare('UPDATE `articles` SET `is_published` = ? WHERE `id` = ?');
+        $stmt->execute([$new_status, $id]);
+    }
 
 
-// Step 8: If the 'is_featured' control is clicked, toggle the status from 0 -> 1 for featured or 1 -> 0 for unfeatured
+    // Step 8: If the 'is_featured' control is clicked, toggle the status from 0 -> 1 for featured or 1 -> 0 for unfeatured
+    if (isset($_GET['is_featured'])) {
+        $current_status = (int) $_GET['is_featured'];
+        $new_status = $current_status === 1 ? 0 : 1;
+
+        $stmt = $pdo->prepare('UPDATE `articles` SET `is_featured` = ? WHERE `id` = ?');
+        $stmt->execute([$new_status, $id]);
+    }
+
+    header('Location: articles.php');
+    exit;
+}
 
 ?>
 <?php include 'templates/head.php'; ?>

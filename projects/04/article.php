@@ -6,7 +6,7 @@ include 'config.php';
 // SQL example: SELECT articles.*, users.full_name AS author FROM articles JOIN users ON articles.author_id = users.id WHERE is_published = 1 AND articles.id = ?
 if (isset($_GET['id'])) {
     
-    $stmt = $pdo->prepare("SELECT `articles`.*, `users.full_name` AS `author` FROM `articles` JOIN `users` ON `articles`.`author_id` = `users`.`id` WHERE `is_published` = 1 AND `articles`.`id` = ?");
+    $stmt = $pdo->prepare("SELECT `articles`.*, `users`.`full_name` AS `author` FROM `articles` JOIN `users` ON `articles`.`author_id` = `users`.`id` WHERE `is_published` = 1 AND `articles`.`id` = ?");
     $stmt->execute([$_GET['id']]);
     $article = $stmt->fetch();
 
@@ -28,7 +28,7 @@ if (!$article) {
         <article class="media">
             <figure class="media-left">
                 <p class="image is-128x128">
-                    <img src="https://source.unsplash.com/random/128x128/?wellness">
+                    <img src="https://picsum.photos/128">
                 </p>
             </figure>
             <div class="media-content">

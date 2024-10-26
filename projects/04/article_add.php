@@ -3,11 +3,30 @@
 include 'config.php'; 
 
 // Step 2: Secure and only allow 'admin' users to access this page
+if (!isset($_SESSION['loggedin']) || $_SESSION['user_role'] !== 'admin') {
+    // Redirect user to login page or display an error message
+    $_SESSION['messages'][] = "You must be an administrator to access that resource.";
+    header('Location: login.php');
+    exit;
+}
 
 /* Step 3: Implement form handling logic to insert the new article into the database. 
    You must update the SQL INSERT statement, and when the record is successfully created, 
    redirect back to the `articles.php` page with the message "The article was successfully added."
 */
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $title = htmlspecialchars($_POST['title']);
+    $content = htmlspecialchars($_POST['content']);
+
+    $insertStmt = $pdo->prepare('INSERT INTO `articles` (`title`, `content`, `author_id`) VALUES (?, ?, ?)');
+    
+    if ($insertStmt->execute([$title, $content, $_SESSION['user_id']])) {
+        $_SESSION['messages'][] = "The article was successfully added.";
+        header('Location: articles.php');
+        exit;
+    }
+}
+
 ?>
 <?php include 'templates/head.php'; ?>
 <?php include 'templates/nav.php'; ?>
