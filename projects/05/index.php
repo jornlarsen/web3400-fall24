@@ -29,7 +29,7 @@ if (!$articles) {
             <article class="media">
                 <figure class="media-left">
                     <p class="image is-128x128">
-                        <img class="is-rounded" src="https://picsum.photos/128">
+                        <img class="is-rounded" src="https://picsum.photos/128?random=<?= $article['id'] ?>">
                     </p>
                 </figure>
                 <div class="media-content">
@@ -48,21 +48,21 @@ if (!$articles) {
                         </p>
                     </div>
                     <p class="buttons">
-                        <a class="button is-small is-rounded">
+                        <a class="button is-small is-rounded is-static">
                             <span class="icon is-small">
-                                <i class="fas fa-thumbs-up"></i>
+                            <i class="fas fa-thumbs-up"></i>
                             </span>
                             <span><?= $article['likes_count'] ?></span>
                         </a>
-                        <a class="button is-small is-rounded">
+                        <a class="button is-small is-rounded is-static">
                             <span class="icon is-small">
-                                <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
                             </span>
                             <span><?= $article['favs_count'] ?></span>
                         </a>
-                        <a class="button is-small is-rounded">
+                        <a class="button is-small is-rounded is-static">
                             <span class="icon is-small">
-                                <i class="fas fa-comment"></i>
+                            <i class="fas fa-comment"></i>
                             </span>
                             <span><?= $article['comments_count'] ?></span>
                         </a>
