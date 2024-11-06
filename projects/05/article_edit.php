@@ -19,6 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Update article information
     $insertStmt = $pdo->prepare("UPDATE `articles` SET `title`= ?,`content`= ?, `modified_on` = NOW() WHERE `id` = ?");
     $insertStmt->execute([$title, $content, $_POST['id']]);
+
+    $_SESSION['messages'][] = "Article was successfully edited.";
+    header('Location: articles.php');
+    exit;
 }
 
 // Step 4: Else it's an initial page request, fetch the article's current data from the database by preparing and executing a SQL statement that uses the article id from the query string (ex. $_GET['id'])

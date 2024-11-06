@@ -22,6 +22,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Update user records
     $insertStmt = $pdo->prepare("UPDATE `users` SET `full_name`=?,`phone`=?, `role`=? WHERE `id` = ?");
     $insertStmt->execute([$full_name, $phone, $role, $_POST['id']]);
+
+    $_SESSION['messages'][] = "User was successfully edited.";
+    header('Location: users_manage.php');
+    exit;
 }
 
 // Step 4: Else it's an initial page request, fetch the user's current data from the database by preparing and executing a SQL statement that gets the user id from the query string (ex. $_GET['id'])
