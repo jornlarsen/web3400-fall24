@@ -38,6 +38,9 @@
                         <a href="articles.php" class="navbar-item">
                             Manage Articles
                         </a>
+                        <a href="tickets.php" class="navbar-item">
+                            Manage Tickets
+                        </a>
                     </div>
                 </div>
             <?php endif; ?>
