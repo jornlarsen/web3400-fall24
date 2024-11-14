@@ -18,7 +18,7 @@ if (isset($_GET['id'])) {
     $stmt->execute([$_GET['id']]);
     $article = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // If no user is found, show the error
+    // If no article is found, show the error
     if (!$article) {
         $_SESSION['messages'][] = "An article with that ID did not exist.";
     }
