@@ -32,6 +32,9 @@
                         <span>Admin</span>
                     </a>
                     <div class="navbar-dropdown">
+                        <a href="admin_dashboard.php" class="navbar-item">
+                            Dashboard
+                        </a>
                         <a href="users_manage.php" class="navbar-item">
                             Manage Users
                         </a>
