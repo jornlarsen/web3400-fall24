@@ -194,28 +194,27 @@ if (!$contacts) {
                 </p>
                 <div class="panel-block">
                     <form action="article_add.php" method="post">
+                        <!-- Title -->
                         <div class="field">
                             <label class="label">Title</label>
                             <div class="control">
-                                <input class="input" type="text" name="title" required="">
+                                <input class="input" type="text" name="title" required>
                             </div>
                         </div>
+                        <!-- Content -->
                         <div class="field">
                             <label class="label">Content</label>
                             <div class="control">
-                                <textarea id="content" class="textarea" name="content" required=""></textarea>
+                                <textarea class="textarea" id="content" name="content" required></textarea>
                             </div>
                         </div>
+                        <!-- Submit -->
                         <div class="field is-grouped">
                             <div class="control">
-                                <button class="button is-link" type="submit">
-                                    Add Post
-                                </button>
+                                <button type="submit" class="button is-link">Add Post</button>
                             </div>
                             <div class="control">
-                                <a class="button is-link is-light" href="articles.php">
-                                    Cancel
-                                </a>
+                                <a href="articles.php" class="button is-link is-light">Cancel</a>
                             </div>
                         </div>
                     </form>
